@@ -39,13 +39,13 @@ def ep_decay(eps, episodes):
 def print_state_dict(filename, agent):
     if agent == "Actor":
         print("Actor")
-        with open("pickles/" + filename + "actor.pickle", 'wb') as file:
+        with open("pickles/" + filename + "actor.pickle", 'rb') as file:
             Actor = pickle.load(file)
         for key, value in Actor.items():
             print(f"{key}: {value}")
     elif agent == "Critic":
         print("Critic")
-        with open("pickles/" + filename + "actor.pickle", 'wb') as file:
+        with open("pickles/" + filename + "actor.pickle", 'rb') as file:
             Actor = pickle.load(file)
         for key, value in Actor.items():
             print(f"{key}: {value}")
