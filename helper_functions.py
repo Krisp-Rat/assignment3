@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import torch
+import pickle
 
 
 # Prints the reward per episode graph
@@ -35,10 +36,16 @@ def ep_decay(eps, episodes):
     plt.show()
 
 
-def print_Qtable(policy):
-    for pos in range(36):
-        for package in range(2):
-            state = torch.tensor([pos, package], device=device, dtype=torch.float32).unsqueeze(0)
-            table = policy(state).squeeze(1)[0]
-            ret = f"({pos}, {package}):\n0:{table[0].item()}, 1:{table[1].item()}, 2:{table[2].item()}, 3:{table[3].item()}, 4:{table[4].item()}, 5:{table[5].item()}"
-            print(ret)
+def print_state_dict(filename, agent):
+    if agent == "Actor":
+        print("Actor")
+        with open("pickles/" + filename + "actor.pickle", 'wb') as file:
+            Actor = pickle.load(file)
+        for key, value in Actor.items():
+            print(f"{key}: {value}")
+    elif agent == "Critic":
+        print("Critic")
+        with open("pickles/" + filename + "actor.pickle", 'wb') as file:
+            Actor = pickle.load(file)
+        for key, value in Actor.items():
+            print(f"{key}: {value}")
